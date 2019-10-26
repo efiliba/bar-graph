@@ -1,0 +1,126 @@
+:root {
+  --background-color-app: lightGrey;
+  --drag-handle-size: 10px;
+  --chart-height: 540px;
+  --chart-width: 400px;
+}
+
+html {
+  background-color: #333;
+}
+
+.histogram {
+  margin: 100px;
+  padding: 40px;
+  width: calc(var(--chart-width) + 60px);
+  background-color: var(--background-color-app);
+  user-select: none;
+}
+
+.range-selector {
+  padding-left: 30px;
+  padding-bottom: 40px;
+}
+
+.range-selector__input {
+  margin-left: 10px;
+}
+
+.axis-y {
+  position: relative;
+  height: var(--chart-height);
+  text-align: right;
+  display: inline-grid;
+  grid-template-columns: 20px 10px;
+  border-bottom: solid 2px var(--background-color-app);
+  color: var(--background-color-app); /* hide all tick values by default */
+} 
+
+.axis-y__item {
+  padding-right: 3px;
+  position: relative;
+}
+
+.axis-y__item--highlight {
+  color: black; /* show highlighted tick values */
+}
+
+.axis-y__item__value {
+  position: inherit;
+  top: -9px;
+}
+
+.axis-y__item-tick {
+  border-top: solid 1px black;
+  border-right: solid 1px black;
+  font-size: 14px;
+}
+
+.axis-y__item-tick:after {
+  content: "";
+  position: absolute;
+  width: var(--chart-width);
+  border-top: dotted 1px grey;
+  margin-top: -1px;
+}
+
+.chart {
+  position: relative;
+  display: inline-block;
+  height: var(--chart-height);
+  width: var(--chart-width);
+  border-bottom: solid 1px black;
+}
+
+.chart::after {
+  content: "."; /* Hack: need some content in the chart */
+  color: var(--background-color-app);
+}
+
+.marker-line {
+  position: absolute;
+  border-bottom: dashed 1px black;
+  width: 100%;
+}
+
+.marker-line__value {
+  position: absolute;
+  top: -10px;
+  right: -20px;
+}
+
+.bar {
+  position: absolute;
+  box-sizing: border-box;
+  border: solid 1px black;
+  border-bottom: none;
+  background-color: cornflowerblue;
+}
+
+.bar--disable {
+  opacity: .5;
+}
+
+.bar--mouse-down {
+  border: solid 1px red;
+  border-bottom: none;
+}
+
+.drag-handle {
+  position: absolute;
+  border: solid 1px black;
+  background-color: white;
+  width: var(--drag-handle-size);
+  height: var(--drag-handle-size);
+  right: 50%;
+  transform: translate(50%, -50%);
+  z-index: 1000;
+}
+
+.drag-handle:hover {
+  cursor: grab;
+}
+
+.drag-handle--disable:hover {
+  cursor: not-allowed;
+}
